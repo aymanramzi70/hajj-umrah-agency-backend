@@ -1,0 +1,28 @@
+// ✅ تخصيص ألوان Bootstrap الأساسية
+$primary: #1a5e3b; // الأخضر الإسلامي
+$secondary: #6c757d; // الرمادي
+$success: #198754;
+$info: #0dcaf0;
+$warning: #ffc107;
+$danger: #dc3545;
+$light: #f8f9fa;
+$dark: #212529;
+
+// ✅ الخط الافتراضي للموقع
+$font-family-sans-serif: 'Tajawal', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+// ✅ تعديل حواف الأزرار والبطاقات
+$border-radius: .5rem;
+
+// ✅ زر رئيسي مخصص (اختياري)
+$btn-padding-y: .6rem;
+$btn-padding-x: 1.2rem;
+$btn-font-weight: 600;
+
+// ✅ المسافات العامة (مثال)
+$spacer: 1rem;
+
+// ✅ الألوان المخصصة الإضافية (يمكنك استخدامها في ملفاتك)
+$main-brand-color: #1a5e3b;
+$main-accent-color: #f3f3f3;
+$text-muted-custom: #7a7a7a;
