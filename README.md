@@ -1,61 +1,104 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# نظام إدارة وكالة الحج والعمرة (الواجهة الخلفية - Laravel)
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+![Laravel Logo](https://raw.githubusercontent.com/laravel/art/master/logo-lockup.svg)
 
-## About Laravel
+نظام متكامل لإدارة وكالة خدمات الحج والعمرة، مصمم خصيصًا للشركات ذات الفروع المتعددة. هذه الواجهة الخلفية (Backend) مبنية على إطار عمل **Laravel**، وتوفر واجهات برمجة تطبيقات (APIs) قوية وآمنة لتطبيق الويب الإداري وتطبيق الموبايل الخاص بالعملاء.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## الميزات الرئيسية للواجهة الخلفية
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- **إدارة المستخدمين والأدوار**: نظام كامل لإدارة مستخدمي لوحة التحكم (الموظفين والوكلاء) مع أدوار وصلاحيات محددة.
+- **إدارة الموارد**: واجهات API كاملة لعمليات CRUD على (الفروع، العملاء، الوكلاء الخارجيين، الباقات، الحجوزات، والمدفوعات).
+- **نظام المصادقة**: استخدام Laravel Sanctum لتوفير مصادقة آمنة عبر التوكن (Token-based authentication) لتطبيق الموبايل.
+- **الإشعارات الفورية**: تكامل مع Firebase Cloud Messaging (FCM v1) لإرسال إشعارات فورية إلى أجهزة العملاء.
+- **تكامل الدفع الإلكتروني**: دعم بوابة الدفع Stripe لمعالجة المدفوعات عبر الإنترنت.
+- **المنطق التجاري**: تطبيق منطق معقد مثل تحديث المقاعد المتاحة في الباقات بشكل تلقائي عند كل عملية حجز أو تعديل.
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## المتطلبات
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+- PHP 8.2 أو أحدث.
+- Composer.
+- Node.js و npm.
+- MySQL أو PostgreSQL أو أي قاعدة بيانات مدعومة من Laravel.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+---
 
-## Laravel Sponsors
+## دليل التثبيت
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+اتبع الخطوات التالية لتثبيت وتشغيل المشروع على جهازك:
 
-### Premium Partners
+1.  **استنساخ المستودع (Clone the repository):**
+    ```bash
+    git clone (https://github.com/aymanramzi70/hajj-umrah-agency-backend.git)
+    cd hajj-umrah-agency-backend
+    ```
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+2.  **تثبيت الاعتمادات (Install dependencies):**
+    ```bash
+    composer install
+    npm install
+    ```
 
-## Contributing
+3.  **إعداد ملف البيئة (.env):**
+    - انسخ ملف `env.example` وأعد تسميته إلى `.env`.
+      ```bash
+      cp .env.example .env
+      ```
+    - قم بتعديل متغيرات قاعدة البيانات (`DB_DATABASE`, `DB_USERNAME`, `DB_PASSWORD`).
+    - قم بتوليد مفتاح التطبيق:
+      ```bash
+      php artisan key:generate
+      ```
+    - **إعدادات Firebase:**
+      - أضف مسار ملف مفتاح حساب الخدمة (JSON) الذي تم تنزيله من Firebase:
+      ```env
+      FIREBASE_CREDENTIALS=/path/to/your-project-id-firebase-adminsdk-xxxxx-xxxxx.json
+      ```
+      - يفضل وضعه في مجلد `storage/app/` وتحديث المسار في `config/services.php` ليكون `storage_path('app/...')`.
+    - **إعدادات Stripe:**
+      - أضف مفاتيح Stripe API (من وضع الاختبار):
+      ```env
+      STRIPE_KEY=pk_test_...
+      STRIPE_SECRET=sk_test_...
+      ```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+4.  **تشغيل عمليات الترحيل وتعبئة البيانات (Run migrations and seeders):**
+    - ستقوم هذه الخطوة بإنشاء الجداول وملئها ببيانات تجريبية.
+      ```bash
+      php artisan migrate:fresh --seed
+      ```
 
-## Code of Conduct
+5.  **تجميع الأصول (Compile assets):**
+    - لتجميع ملفات CSS و JavaScript للوحة التحكم.
+      ```bash
+      npm run dev
+      # أو npm run watch للعملية التلقائية
+      ```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+6.  **تشغيل الخادم (Run the server):**
+    ```bash
+    php artisan serve
+    ```
 
-## Security Vulnerabilities
+---
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## دليل الاستخدام
 
-## License
+-   **لوحة تحكم الويب**: يمكنك الوصول إليها من `http://127.0.0.1:8000/login`، واستخدام المستخدم التجريبي الذي تم إنشاؤه بواسطة الـ seeder (`admin@hajjumrah.com` وكلمة المرور `password`).
+-   **الـ APIs**: يمكن الوصول إليها من `http://127.0.0.1:8000/api/...`
+-   **الإشعارات الفورية**: يمكنك إرسال إشعار تجريبي من سطر الأوامر بعد تسجيل الدخول من التطبيق:
+    ```bash
+    php artisan send:push-notification user@email.com "عنوان الإشعار" "محتوى الإشعار"
+    ```
+-   **تكامل الدفع**: يمكنك اختبار APIs الدفع عبر Stripe باستخدام أرقام البطاقات التجريبية في وضع الاختبار.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+---
+
+## المساهمة
+
+للتطوير أو المساهمة في المشروع، يرجى استنساخ المستودع، إنشاء فرع جديد للميزة أو الإصلاح، ثم إرسال طلب سحب (Pull Request).
+
+---
